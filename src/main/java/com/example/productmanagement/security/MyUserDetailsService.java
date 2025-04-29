@@ -10,12 +10,12 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) {
         if ("admin".equals(username)) {
             return User.withUsername("admin")
-                    .password("{noop}sarthak")
+                    .password("{noop}admin@12345")
                     .roles("ADMIN")
                     .build();
         } else if ("user".equals(username)) {
             return User.withUsername("user")
-                    .password("{noop}password")
+                    .password("{noop}user@1234")
                     .roles("USER")
                     .build();
         } else {

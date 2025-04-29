@@ -1,5 +1,7 @@
 package com.example.productmanagement.controller;
 
+import com.example.productmanagement.bean.Response;
+import com.example.productmanagement.exception.PMMessage;
 import com.example.productmanagement.security.JwtUtil;
 import com.example.productmanagement.security.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +23,11 @@ public class AuthController {
     private JwtUtil jwtUtil;
 
     @PostMapping("/authenticate")
-    public String generateToken(@RequestParam String username, @RequestParam String password) throws Exception {
+    public Response generateToken(@RequestParam String username, @RequestParam String password) throws Exception {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(username, password)
         );
         final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        return jwtUtil.generateToken(userDetails.getUsername());
+        return new Response(PMMessage.SUCCESS, jwtUtil.generateToken(userDetails.getUsername()));
     }
 }
