@@ -13,7 +13,7 @@
 3. Access Swagger UI at: `http://localhost:8080/swagger-ui.html`
 4. Authenticate using:
    - Username: `admin`
-   - Password: `password`
+   - Password: `admin@12345`
 5. Use the JWT Token in `Authorization: Bearer <token>` header for secured APIs.
 
 ## API Endpoints
