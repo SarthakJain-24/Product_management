@@ -70,7 +70,7 @@ class ProductServiceTest {
             productService.getProductById("1123");
         });
 
-        assertEquals("data not found with this id. ", exception.getMessage());
+        assertEquals("data not found with this id.", exception.getMessage());
         verify(productRepository, times(1)).findById("1123");
     }
 
