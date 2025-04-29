@@ -19,20 +19,20 @@ import com.example.productmanagement.service.ProductService;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
-	
 	@Autowired
 	private ProductRepository productRepository;
 
 	@Override
 	public Response createProduct(Product product) {
-        logger.info("Creating a new product: {}", product.getName());
+		logger.info("Creating a new product: {}", product.getName());
 		Optional<Product> existing = null;
 		if (Objects.nonNull(product.getId())) {
 			existing = productRepository.findById(product.getId().toString());
 		}
-		if (Objects.nonNull(existing) && !existing.isEmpty()) {
+
+		if (Objects.nonNull(existing) && existing.isPresent()) {
 			return new Response(PMMessage.DUPLICATE_ID, existing);
 		}
 		return new Response(PMMessage.SUCCESS, productRepository.save(product));
